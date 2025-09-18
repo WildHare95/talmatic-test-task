@@ -1,0 +1,15 @@
+nb-card-header {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+}
+
+.user-list__item {
+  display: flex;
+  justify-content: space-between;
+}
+
+.user-list__item-action {
+  display: flex;
+  gap: 6px;
+}
