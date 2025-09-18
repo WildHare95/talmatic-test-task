@@ -1,1 +1,52 @@
-<p>task-list works!</p>
+<nb-card>
+  <nb-card-header>
+    <h1>Tasks</h1>
+    <button nbButton status="primary" (click)="edit(null)">Create Task</button>
+  </nb-card-header>
+
+  <nb-card-body>
+    <nb-list>
+
+      <nb-list-item *ngFor="let task of data" class="task-list__item">
+
+        <div class="task-list__item">
+          <div>
+            <strong>{{ task.name }}</strong>
+            <div class="text-hint">
+              Created: {{ task.createdAt | date:'short' }} • Updated: {{ task.updatedAt | date:'short' }}
+            </div>
+            <div *ngIf="task.description" class="text-basic">{{ task.description }}</div>
+            <div>
+              <nb-badge [text]="task.state | stateLabel" [status]="task.state | status"></nb-badge>
+              <span class="text-hint"> • Assigned: usersMap.get(task.userId || '')</span>
+            </div>
+          </div>
+
+          <div class="task-list__item-action">
+            <nb-select placeholder="Assign user" size="tiny" [selected]="task.userId"
+                       (selectedChange)="assign(task.id, $event)">
+              <nb-option [value]="undefined">— Unassign —</nb-option>
+              <nb-option *ngFor="let u of users" [value]="u.id">{{ u.name }}</nb-option>
+            </nb-select>
+
+
+            <nb-select
+              placeholder="State" size="tiny"
+              [selected]="task.state" (selectedChange)="setState(task.id,$event)">
+              <nb-option *ngFor="let s of states" [value]="s">{{ s | stateLabel }}</nb-option>
+            </nb-select>
+
+            <div class="actions-buttons">
+              <button nbButton status="info" size="tiny" (click)="edit(task.id)">Edit</button>
+              <button nbButton status="danger" size="tiny" (click)="delete(task.id)">Delete</button>
+            </div>
+
+          </div>
+        </div>
+
+      </nb-list-item>
+
+    </nb-list>
+
+  </nb-card-body>
+</nb-card>
