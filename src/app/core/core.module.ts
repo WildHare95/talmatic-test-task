@@ -4,26 +4,14 @@ import { NavBarComponent } from './components/nav-bar/nav-bar.component';
 import { NbButtonModule, NbLayoutModule, NbThemeModule } from '@nebular/theme';
 import { RouterModule } from '@angular/router';
 
-const NbModules = [
-  NbLayoutModule,
-  NbButtonModule
-]
 
-const coreModules = [
-  RouterModule,
-]
+
 
 @NgModule({
   declarations: [NavBarComponent],
-  imports: [
-    ...NbModules,
-    ...coreModules
-  ],
+  imports: [NbButtonModule, RouterModule],
   exports: [
-    NavBarComponent,
-    RouterModule,
-    ...NbModules,
-    ...coreModules
+    NavBarComponent
   ],
 })
 export class CoreModule { }

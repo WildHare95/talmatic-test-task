@@ -2,10 +2,13 @@ import { ApplicationConfig, importProvidersFrom, provideZoneChangeDetection } fr
 import { provideRouter } from '@angular/router';
 
 import { routes } from './app.routes';
-import { NbThemeModule } from '@nebular/theme';
+import { NbThemeModule, NbWindowModule } from '@nebular/theme';
 
 export const appConfig: ApplicationConfig = {
   providers: [provideZoneChangeDetection({ eventCoalescing: true }), provideRouter(routes),
-    importProvidersFrom(NbThemeModule.forRoot({ name: 'default' }))
+    importProvidersFrom(
+      NbThemeModule.forRoot({ name: 'default' }),
+      NbWindowModule.forRoot({})
+    )
   ]
 };

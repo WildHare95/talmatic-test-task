@@ -1,5 +1,19 @@
-export  enum TaskStateEnum {
-  'in queue' = 0,
-  'in progress' = 1,
-  'done' = 2
+import { NbComponentStatus} from '@nebular/theme';
+
+export enum TaskStateEnum {
+  InQueue = 0,
+  InProgress = 1,
+  Done = 2,
 }
+
+export const STATE_LABEL: Record<TaskStateEnum, string> = {
+  [TaskStateEnum.InQueue]: 'in queue',
+  [TaskStateEnum.InProgress]: 'in progress',
+  [TaskStateEnum.Done]: 'done',
+};
+
+export const STATE_STATUS: Record<TaskStateEnum, NbComponentStatus> = {
+  [TaskStateEnum.InQueue]: 'info',
+  [TaskStateEnum.InProgress]: 'warning',
+  [TaskStateEnum.Done]: 'success',
+};
