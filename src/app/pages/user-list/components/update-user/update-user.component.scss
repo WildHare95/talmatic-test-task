@@ -1,0 +1,18 @@
+:host {
+    display: flex;
+    flex-direction: column;
+    gap: 24px;
+}
+
+.update-user__footer {
+    display: flex;
+    justify-content: flex-end;
+    gap: 12px;
+}
+
+.update-user__body {
+    display: flex; 
+    flex-direction: row;
+    align-items: center;
+    gap: 6px;
+}

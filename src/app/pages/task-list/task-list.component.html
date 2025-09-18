@@ -21,7 +21,7 @@
               Created at: {{ task.createdAt | date: 'short' }} • Updated at: {{ task.updatedAt | date: 'short' }}
             </div>
             @if (task.description) {
-              <div class="text-basic">{{ task.description }}</div>
+            <div class="text-basic">{{ task.description }}</div>
             }
             <div>
               <nb-badge [text]="task.state | stateLabel" [status]="task.state | status"></nb-badge>
@@ -34,16 +34,16 @@
               (selectedChange)="assign(task.id, $event)">
               <nb-option [value]="undefined">— Unassign —</nb-option>
               @for (u of userList(); track $index) {
-                <nb-option [value]="u.id">{{ u.name }}</nb-option>
+              <nb-option [value]="u.id">{{ u.name }}</nb-option>
               }
-              
+
             </nb-select>
 
 
             <nb-select placeholder="State" size="tiny" [selected]="task.state"
               (selectedChange)="setState(task.id,$event)">
               @for (s of states; track $index) {
-                <nb-option [value]="s">{{ s | stateLabel }}</nb-option>
+              <nb-option [value]="s">{{ s | stateLabel }}</nb-option>
               }
             </nb-select>
 
