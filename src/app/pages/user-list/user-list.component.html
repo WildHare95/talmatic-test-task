@@ -1,29 +1,35 @@
+@let data = usersData();
+
 <nb-card>
   <nb-card-header>
     <h1>Users</h1>
     <button nbButton status="primary" (click)="update(null)">Create User</button>
   </nb-card-header>
 
+  @if(data) {
   <nb-card-body>
+
     <nb-list>
+      @for (item of data; track $index) {
+      <nb-list-item class="user-list__item">
+        <div>
+          <strong>{{ item.user.name }}</strong>
+          <div class="text-hint">Assigned tasks: {{item.tasks.length}} </div>
+          <ul>
+            <li *ngFor="let t of item.tasks">{{ t.name }} — {{ t.state }}</li>
+          </ul>
+        </div>
 
-      <nb-list-item *ngFor="let user of users" class="user-list__item">
-          <div>
-            <strong>{{ user.name }}</strong>
-            <div class="text-hint">Assigned tasks: {{data.length}} </div>
-            <ul>
-              <li *ngFor="let t of data">{{ t.name }} — {{ t.state }}</li>
-            </ul>
-          </div>
-
-          <div class="user-list__item-action">
-              <button nbButton status="info" size="tiny" (click)="update(user.id)">Edit</button>
-              <button nbButton status="danger" size="tiny" (click)="delete(user.id)">Delete</button>
-          </div>
+        <div class="user-list__item-action">
+          <button nbButton status="info" size="tiny" (click)="update(item.user.id)">Edit</button>
+          <button nbButton status="danger" size="tiny" (click)="delete(item.user.id)">Delete</button>
+        </div>
 
       </nb-list-item>
-
+      }
     </nb-list>
 
   </nb-card-body>
+  }
+
 </nb-card>
