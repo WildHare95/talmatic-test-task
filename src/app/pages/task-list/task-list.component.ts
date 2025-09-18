@@ -1,9 +1,10 @@
-import { Component, inject, INJECTOR } from '@angular/core';
+import { Component, computed, inject, INJECTOR } from '@angular/core';
 import { SharedModule } from '../../shared/shared.module';
 import { Task } from '../../core/models/task.model';
 import { TaskStateEnum } from '../../core/enums/task-state.enum';
 import { NbWindowService } from '@nebular/theme';
 import { User } from '../../core/models/user.model';
+import { TasksStore } from '../../core/services/tasks.store';
 
 @Component({
   selector: 'app-task-list',
@@ -11,56 +12,24 @@ import { User } from '../../core/models/user.model';
   styleUrl: './task-list.component.scss',
   standalone: true,
   imports: [SharedModule],
+  providers: [TasksStore]
 })
 export class TaskListComponent {
-  data: Task[] = [
-    {
-      id: '1',
-      createdAt: new Date().toISOString(),
-      name: 'name',
-      description: 'description',
-      state: TaskStateEnum.Done,
-      updatedAt: new Date().toISOString(),
-      userId: 'userId'
-    },
-    {
-      id: '2',
-      createdAt: new Date().toISOString(),
-      name: 'name',
-      description: 'description',
-      state: TaskStateEnum.InProgress,
-      updatedAt: new Date().toISOString(),
-      userId: 'userId'
-    },
-    {
-      id: '3',
-      createdAt: new Date().toISOString(),
-      name: 'name',
-      description: 'description',
-      state: TaskStateEnum.InQueue,
-      updatedAt: new Date().toISOString(),
-      userId: 'userId'
-    }
-  ]
-  users: User[] = [
-    {
-      id: '1',
-      name: 'name1'
-    },
-    {
-      id: '2',
-      name: 'name2'
-    },
-    {
-      id: '3',
-      name: 'name3'
-    }
-  ]
-
+  private readonly taskStore = inject(TasksStore)
   private readonly windowService = inject(NbWindowService);
-  protected readonly  states = [TaskStateEnum.Done, TaskStateEnum.InQueue, TaskStateEnum.InProgress];
-  assign(id: any, $event: any) {
-    console.log(id, $event);
+
+  protected readonly tasksData = this.taskStore.tasks
+  protected readonly userList = this.taskStore.userList
+  protected readonly usersMap = computed(() => {
+    const userList = this.userList()
+    return new Map(
+      userList.map(u => [u.id, u.name ])
+    );
+  })
+
+  protected readonly states = [TaskStateEnum.Done, TaskStateEnum.InQueue, TaskStateEnum.InProgress];
+
+  assign(taskId: any, userId: any) {
   }
 
   setState(id: any, $event: any) {
