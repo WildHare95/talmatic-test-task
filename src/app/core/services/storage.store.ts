@@ -1,4 +1,4 @@
-import { signalStore, withComputed, withState } from '@ngrx/signals';
+import { patchState, signalStore, withComputed, withMethods, withState } from '@ngrx/signals';
 import { User } from '../models/user.model';
 import { Task } from '../models/task.model';
 import { TaskStateEnum } from '../enums/task-state.enum';
@@ -29,7 +29,7 @@ const initialState: StorageState = {
 };
 
 export const StorageStore = signalStore(
-  withState(initialState),
+  withState<StorageState>(initialState),
   withComputed((store) => {
     const usersWithAssignedTasks = computed(() => {
       const byId = new Map(
@@ -46,6 +46,15 @@ export const StorageStore = signalStore(
     });
     return {
       usersWithAssignedTasks
+    }
+  }),
+  withMethods((store) => {
+    const updateUsers = (users: User[]) => {
+      patchState(store, { users })
+    }
+
+    return {
+      updateUsers
     }
   })
 );

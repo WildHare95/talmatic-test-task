@@ -1,7 +1,5 @@
 import { patchState, signalStore, withComputed, withHooks, withMethods, withState } from '@ngrx/signals';
-import { User } from '../models/user.model';
 import { Task } from '../models/task.model';
-import { TaskStateEnum } from '../enums/task-state.enum';
 import { StorageStore } from './storage.store';
 import { computed, inject } from '@angular/core';
 import { pipe, tap } from 'rxjs';

@@ -4,6 +4,7 @@ import {
   NbBadgeModule,
   NbButtonModule,
   NbCardModule,
+  NbInputModule,
   NbLayoutModule,
   NbListModule,
   NbSelectModule
@@ -29,6 +30,7 @@ import { StateLabelPipe } from './pipes/state-label.pipe';
     NbListModule,
     NbBadgeModule,
     NbSelectModule,
+    NbInputModule,
 
     StatusPipe,
     StateLabelPipe
@@ -45,6 +47,7 @@ import { StateLabelPipe } from './pipes/state-label.pipe';
     NbListModule,
     NbBadgeModule,
     NbSelectModule,
+    NbInputModule,
 
     StatusPipe,
     StateLabelPipe

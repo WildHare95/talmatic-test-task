@@ -1,0 +1,11 @@
+<div class="update-user__body">
+    <span>User name:</span>
+    <input [formControl]="userControl" nbInput />
+</div>
+
+<div class="update-user__footer">
+    <button nbButton status="danger" (click)="close()">Cancel</button>
+    <button nbButton status="primary" [disabled]="isValid" (click)="update()">
+        {{ primaryButtonLabel() }}
+    </button>
+</div>

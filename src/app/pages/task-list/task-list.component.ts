@@ -1,9 +1,7 @@
 import { Component, computed, inject, INJECTOR } from '@angular/core';
 import { SharedModule } from '../../shared/shared.module';
-import { Task } from '../../core/models/task.model';
 import { TaskStateEnum } from '../../core/enums/task-state.enum';
 import { NbWindowService } from '@nebular/theme';
-import { User } from '../../core/models/user.model';
 import { TasksStore } from '../../core/services/tasks.store';
 
 @Component({
