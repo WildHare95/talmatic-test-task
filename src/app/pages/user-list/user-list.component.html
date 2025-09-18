@@ -1,1 +1,29 @@
-<p>user-list works!</p>
+<nb-card>
+  <nb-card-header>
+    <h1>Users</h1>
+    <button nbButton status="primary" (click)="update(null)">Create User</button>
+  </nb-card-header>
+
+  <nb-card-body>
+    <nb-list>
+
+      <nb-list-item *ngFor="let user of users" class="user-list__item">
+          <div>
+            <strong>{{ user.name }}</strong>
+            <div class="text-hint">Assigned tasks: {{data.length}} </div>
+            <ul>
+              <li *ngFor="let t of data">{{ t.name }} — {{ t.state }}</li>
+            </ul>
+          </div>
+
+          <div class="user-list__item-action">
+              <button nbButton status="info" size="tiny" (click)="update(user.id)">Edit</button>
+              <button nbButton status="danger" size="tiny" (click)="delete(user.id)">Delete</button>
+          </div>
+
+      </nb-list-item>
+
+    </nb-list>
+
+  </nb-card-body>
+</nb-card>
