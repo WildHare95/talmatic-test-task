@@ -46,7 +46,7 @@ export class UpdateTaskComponent implements OnInit {
     }
   }
 
-  private initForm({ name, description, state }: Task) {
+  private initForm({ name, description }: Task) {
     this.taskFormGroup.setValue(
       {
         name,
