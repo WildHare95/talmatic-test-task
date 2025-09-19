@@ -1,0 +1,1 @@
+export const atLeastTwoNonSpace = /^(?:.*\S.*\S).*$/;

@@ -1,15 +1,14 @@
 import { Component, inject, Input, OnInit, signal } from '@angular/core';
-import { Task } from '../../../../core/models/task.model';
-import { NbWindowRef } from '@nebular/theme';
-import { SharedModule } from '../../../../shared/shared.module';
 import { FormControl, FormGroup, Validators } from '@angular/forms';
+import { NbWindowRef } from '@nebular/theme';
+import { Task } from '../../../../core/models/task.model';
+import { SharedModule } from '../../../../shared/shared.module';
+import { atLeastTwoNonSpace } from '../../../../core/constants/pattern.constants';
 
 interface ITaskFormGroup {
   name: FormControl<string>;
   description: FormControl<string | null>
 }
-
-const atLeastTwoNonSpace = /^(?:.*\S.*\S).*$/;
 
 @Component({
   selector: 'app-update-task',
