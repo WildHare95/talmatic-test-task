@@ -1,59 +1,86 @@
-# TalmaticTestTask
+# 📋 Task Manager App
 
-This project was generated using [Angular CLI](https://github.com/angular/angular-cli) version 19.2.17.
+An Angular application for managing tasks and users.  
+Built with **Nebular UI Kit**, **RxJS**, and supports data persistence in memory or via `localStorage`.
 
-## Development server
+---
 
-To start a local development server, run:
+## 🛠️ Tech Stack
+
+- **Angular** v12–v20  
+- **Nebular UI Kit**  
+- **RxJS**  
+- **TypeScript**
+
+---
+
+## 🎯 Features
+
+### 🔹 Tasks
+- List all tasks  
+- Create new task  
+- Edit existing task  
+- Delete task  
+
+**Minimal task fields:**
+- `name` — task title  
+- `description` — task details  
+- `createdAt` — creation date  
+- `updatedAt` — modification date  
+- `state` — one of:
+  - `in queue`
+  - `in progress`
+  - `done`
+
+---
+
+### 🔹 Users
+- List all users  
+- Create new user  
+- Edit user  
+- Delete user  
+
+**Minimal user fields:**
+- `name` — user’s name  
+
+---
+
+## 📌 Business Rules
+
+1. Each task can be assigned to **one user only**.  
+2. A task without an assigned user can only be in the **`in queue`** state.  
+3. A single user cannot have more than **one task** in the **`in progress`** state.  
+
+---
+
+## 👀 UI Requirements
+
+- **Task list** should display:  
+  - name  
+  - creation & modification dates  
+  - assigned user  
+  - state  
+
+- **User list** should display:  
+  - name  
+  - assigned tasks  
+
+---
+
+## 💾 Data Storage
+
+- In-memory state management (via RxJS store)  
+- Optionally persisted in browser `localStorage`  
+
+---
+
+## 🚀 Getting Started
 
 ```bash
+# Install dependencies
+npm install
+
+# Run dev server
+npm start
+# or
 ng serve
-```
-
-Once the server is running, open your browser and navigate to `http://localhost:4200/`. The application will automatically reload whenever you modify any of the source files.
-
-## Code scaffolding
-
-Angular CLI includes powerful code scaffolding tools. To generate a new component, run:
-
-```bash
-ng generate component component-name
-```
-
-For a complete list of available schematics (such as `components`, `directives`, or `pipes`), run:
-
-```bash
-ng generate --help
-```
-
-## Building
-
-To build the project run:
-
-```bash
-ng build
-```
-
-This will compile your project and store the build artifacts in the `dist/` directory. By default, the production build optimizes your application for performance and speed.
-
-## Running unit tests
-
-To execute unit tests with the [Karma](https://karma-runner.github.io) test runner, use the following command:
-
-```bash
-ng test
-```
-
-## Running end-to-end tests
-
-For end-to-end (e2e) testing, run:
-
-```bash
-ng e2e
-```
-
-Angular CLI does not come with an end-to-end testing framework by default. You can choose one that suits your needs.
-
-## Additional Resources
-
-For more information on using the Angular CLI, including detailed command references, visit the [Angular CLI Overview and Command Reference](https://angular.dev/tools/cli) page.
