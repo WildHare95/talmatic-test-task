@@ -1,6 +1,7 @@
 import { Pipe, PipeTransform } from '@angular/core';
-import { STATE_STATUS, TaskStateEnum } from '../../core/enums/task-state.enum';
+import { TaskStateEnum } from '../../core/enums/task-state.enum';
 import { NbComponentStatus } from '@nebular/theme';
+import { STATE_STATUS } from '../../core/constants/task.constants';
 
 @Pipe({
   name: 'status',

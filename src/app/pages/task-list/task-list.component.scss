@@ -12,6 +12,13 @@ nb-badge {
   display: flex;
   justify-content: space-between;
   width: 100%;
+
+  .description {
+    text-overflow: ellipsis;
+    overflow: hidden;
+    width: 160px;
+    white-space: nowrap;
+  }
 }
 
 nb-list-item {

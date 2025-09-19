@@ -1,6 +1,6 @@
 import { ChangeDetectionStrategy, Component, computed, inject, OnDestroy } from '@angular/core';
 import { SharedModule } from '../../shared/shared.module';
-import { STATE_LIST, TaskStateEnum } from '../../core/enums/task-state.enum';
+import { TaskStateEnum } from '../../core/enums/task-state.enum';
 import { NbWindowRef, NbWindowService } from '@nebular/theme';
 import { TasksStore } from '../../core/services/tasks.store';
 import { UpdateTaskComponent } from './components/update-task/update-task.component';
@@ -8,6 +8,7 @@ import { Task } from '../../core/models/task.model';
 import { filter, map, tap } from 'rxjs';
 import { trimObjectStrings } from '../../shared/utils/object.utils';
 import { DeleteModalComponent } from '../../shared/components/delete-modal/delete-modal.component';
+import { STATE_LIST } from '../../core/constants/task.constants';
 
 @Component({
   selector: 'app-task-list',

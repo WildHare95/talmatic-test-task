@@ -4,10 +4,11 @@ import { StorageStore } from './storage.store';
 import { computed, inject } from '@angular/core';
 import { pipe, tap } from 'rxjs';
 import { rxMethod } from '@ngrx/signals/rxjs-interop';
-import { STATE_LABEL, TaskStateEnum } from '../enums/task-state.enum';
+import { TaskStateEnum } from '../enums/task-state.enum';
 import { UserWithAssignedTask } from '../models/user.model';
 import { assign, cloneDeep, find, isNull, map, some } from 'lodash';
 import { NbToastrService } from '@nebular/theme';
+import { STATE_LABEL } from '../constants/task.constants';
 
 interface TasksState {
   tasks: Task[]
