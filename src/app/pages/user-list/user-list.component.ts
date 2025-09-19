@@ -6,7 +6,7 @@ import { UpdateUserComponent } from './components/update-user/update-user.compon
 import { User } from '../../core/models/user.model';
 import { filter, map, tap } from 'rxjs';
 import { isString, trim } from 'lodash';
-import { DeleteUserComponent } from './components/delete-user/delete-user.component';
+import { DeleteModalComponent } from '../../shared/components/delete-modal/delete-modal.component';
 
 @Component({
   selector: 'app-user-list',
@@ -40,8 +40,12 @@ export class UserListComponent {
 
   }
 
-  protected delete({id, name: userName}: User) {
-    const windowRef = this.windowService.open(DeleteUserComponent, { title: 'Delete user', context: { userName }});
+  protected delete({ id, name: userName }: User) {
+    const windowRef = this.windowService.open(DeleteModalComponent, 
+      { 
+        title: 'Delete user', 
+        context: { deletedElement: userName, deletedQuestion: 'Are you sure want to delete user:' } 
+      });
     windowRef.onClose.pipe(
       filter((isDeleted?: boolean) => !!isDeleted),
       tap(() => this.usersStore.deleteUser(id))

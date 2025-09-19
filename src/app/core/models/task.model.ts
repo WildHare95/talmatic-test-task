@@ -6,6 +6,6 @@ export interface Task {
   createdAt: string;   // as ISO
   updatedAt: string;   // as ISO
   state: TaskStateEnum;
-  userId?: string;
+  userId: string | null;
   description?: string;
 }

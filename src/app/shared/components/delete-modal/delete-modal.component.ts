@@ -4,11 +4,13 @@ import { NbButtonModule, NbWindowRef } from '@nebular/theme';
 @Component({
   selector: 'app-delete-user',
   imports: [NbButtonModule],
-  templateUrl: './delete-user.component.html',
-  styleUrl: './delete-user.component.scss'
+  templateUrl: './delete-modal.component.html',
+  styleUrl: './delete-modal.component.scss'
 })
-export class DeleteUserComponent {
-  @Input() userName!: string
+export class DeleteModalComponent {
+  @Input() deletedElement!: string
+  @Input() deletedQuestion!: string
+
   private readonly windowRef = inject(NbWindowRef);
 
   protected delete() {

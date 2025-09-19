@@ -1,0 +1,29 @@
+<div class="update-task__body">
+    <form [formGroup]="taskFormGroup" class="task-form">
+
+        <div class="form-control">
+            <label for="taskName">Task name:</label>
+            <input id="taskName" type="text" nbInput fullWidth formControlName="name" placeholder="Enter task name"
+                required [status]="isNameValid ? 'danger' : 'basic'" />
+            @if (isNameValid) {
+            <div class="text-danger caption">
+                Task name is invalid
+            </div>
+            }
+        </div>
+
+        <div class="form-control">
+            <label for="taskDescription">Description:</label>
+            <input id="taskDescription" type="text" nbInput fullWidth formControlName="description"
+                placeholder="Enter description" />
+        </div>
+
+    </form>
+</div>
+
+<div class="update-user__footer">
+    <button nbButton status="danger" (click)="close()">Cancel</button>
+    <button nbButton status="primary" [disabled]="isValid" (click)="update()">
+        {{ primaryButtonLabel() }}
+    </button>
+</div>

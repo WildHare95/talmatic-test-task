@@ -4,9 +4,8 @@ import { StorageStore } from './storage.store';
 import { inject } from '@angular/core';
 import { pipe, tap } from 'rxjs';
 import { rxMethod } from '@ngrx/signals/rxjs-interop';
-import { User } from '../models/user.model';
+import { User, UserWithAssignedTask } from '../models/user.model';
 
-interface UserWithAssignedTask { user: User, tasks: Task[] }
 
 interface UsersState {
     users: UserWithAssignedTask[]
@@ -21,7 +20,7 @@ export const UsersStore = signalStore(
     withMethods((store, storageStore = inject(StorageStore)) => {
         const _syncUsers = (users: UserWithAssignedTask[]) => {
             const updatedUsers = users.map(({ user }) => user)
-            storageStore.updateUsers(updatedUsers)
+            storageStore.syncUsers(updatedUsers)
         }
 
         const createUser = (name: string) => {
