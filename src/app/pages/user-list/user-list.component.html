@@ -16,7 +16,12 @@
           <strong>{{ item.user.name }}</strong>
           <div class="text-hint">Assigned tasks: {{item.tasks.length}} </div>
           <ul>
-            <li *ngFor="let t of item.tasks">{{ t.name }} — {{ t.state }}</li>
+            <li *ngFor="let t of item.tasks">
+              <span>{{ t.name }}</span>
+              -
+              <nb-tag [status]="t.state | status" appearance="filled" size="tiny"
+                [text]="t.state | stateLabel"></nb-tag>
+              </li>
           </ul>
         </div>
 

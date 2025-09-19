@@ -1,13 +1,16 @@
 import { NgModule } from '@angular/core';
 import { CommonModule } from '@angular/common';
 import {
+  NbAutocompleteModule,
   NbBadgeModule,
   NbButtonModule,
   NbCardModule,
   NbInputModule,
   NbLayoutModule,
   NbListModule,
-  NbSelectModule
+  NbSelectModule,
+  NbTagModule,
+  NbToastrModule
 } from '@nebular/theme';
 import { RouterModule } from '@angular/router';
 import { FormsModule, ReactiveFormsModule } from '@angular/forms';
@@ -31,6 +34,8 @@ import { StateLabelPipe } from './pipes/state-label.pipe';
     NbBadgeModule,
     NbSelectModule,
     NbInputModule,
+    NbTagModule,
+    NbAutocompleteModule,
 
     StatusPipe,
     StateLabelPipe
@@ -48,6 +53,8 @@ import { StateLabelPipe } from './pipes/state-label.pipe';
     NbBadgeModule,
     NbSelectModule,
     NbInputModule,
+    NbTagModule,
+    NbAutocompleteModule,
 
     StatusPipe,
     StateLabelPipe

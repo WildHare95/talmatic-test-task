@@ -49,12 +49,17 @@ export const StorageStore = signalStore(
     }
   }),
   withMethods((store) => {
-    const updateUsers = (users: User[]) => {
+    const syncUsers = (users: User[]) => {
       patchState(store, { users })
     }
 
+    const syncTasks = (tasks: Task[]) => {
+      patchState(store, { tasks })
+    }
+
     return {
-      updateUsers
+      syncUsers,
+      syncTasks
     }
   })
 );

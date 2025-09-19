@@ -6,13 +6,13 @@
     <button nbButton status="primary" (click)="edit(null)">Create Task</button>
   </nb-card-header>
 
-  @if (data) {
+  @if (data.length) {
   <nb-card-body>
     <nb-list>
 
-      @for (task of data; track task.id) {
+      @for (task of data; track task) {
+        
       <nb-list-item class="task-list__item">
-
         <div class="task-list__item">
 
           <div>
@@ -25,31 +25,34 @@
             }
             <div>
               <nb-badge [text]="task.state | stateLabel" [status]="task.state | status"></nb-badge>
-              <span class="text-hint"> • Assigned to: {{ usersMap().get(task.userId || '') }}</span>
+              @let assignedTo = usersMap().get(task.userId || '');
+              @if(!!assignedTo) {
+                <span class="text-hint"> • Assigned to: {{ assignedTo }}</span>
+              }
             </div>
           </div>
 
           <div class="task-list__item-action">
             <nb-select placeholder="Assign user" size="tiny" [selected]="task.userId"
-              (selectedChange)="assign(task.id, $event)">
-              <nb-option [value]="undefined">— Unassign —</nb-option>
-              @for (u of userList(); track $index) {
+              (selectedChange)="assign(task, $event)"
+              >
+              <nb-option [value]="null">— Unassign —</nb-option>
+              @for (u of userList(); track u.id) {
               <nb-option [value]="u.id">{{ u.name }}</nb-option>
               }
 
             </nb-select>
 
 
-            <nb-select placeholder="State" size="tiny" [selected]="task.state"
-              (selectedChange)="setState(task.id,$event)">
-              @for (s of states; track $index) {
+            <nb-select placeholder="State" size="tiny" [selected]="task.state" (selectedChange)="setState(task, $event)">
+              @for (s of states; track s) {
               <nb-option [value]="s">{{ s | stateLabel }}</nb-option>
               }
             </nb-select>
 
             <div class="actions-buttons">
-              <button nbButton status="info" size="tiny" (click)="edit(task.id)">Edit</button>
-              <button nbButton status="danger" size="tiny" (click)="delete(task.id)">Delete</button>
+              <button nbButton status="info" size="tiny" (click)="edit(task)">Edit</button>
+              <button nbButton status="danger" size="tiny" (click)="delete(task)">Delete</button>
             </div>
 
           </div>

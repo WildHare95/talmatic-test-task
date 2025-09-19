@@ -17,3 +17,5 @@ export const STATE_STATUS: Record<TaskStateEnum, NbComponentStatus> = {
   [TaskStateEnum.InProgress]: 'warning',
   [TaskStateEnum.Done]: 'success',
 };
+
+export const STATE_LIST = [TaskStateEnum.Done, TaskStateEnum.InQueue, TaskStateEnum.InProgress]
