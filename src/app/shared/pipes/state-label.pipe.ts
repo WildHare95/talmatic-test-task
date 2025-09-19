@@ -1,5 +1,6 @@
 import { Pipe, PipeTransform } from '@angular/core';
-import { STATE_LABEL, TaskStateEnum } from '../../core/enums/task-state.enum';
+import { TaskStateEnum } from '../../core/enums/task-state.enum';
+import { STATE_LABEL } from '../../core/constants/task.constants';
 
 @Pipe({ name: 'stateLabel', standalone: true, pure: true })
 export class StateLabelPipe implements PipeTransform {

@@ -21,7 +21,7 @@
               Created at: {{ task.createdAt | date: 'short' }} • Updated at: {{ task.updatedAt | date: 'short' }}
             </div>
             @if (task.description) {
-            <div class="text-basic">{{ task.description }}</div>
+            <div class="text-basic description">{{ task.description }}</div>
             }
             <div>
               <nb-badge [text]="task.state | stateLabel" [status]="task.state | status"></nb-badge>

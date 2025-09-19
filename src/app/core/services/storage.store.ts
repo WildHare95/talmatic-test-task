@@ -1,14 +1,15 @@
-import { patchState, signalStore, withComputed, withMethods, withState } from '@ngrx/signals';
+import { patchState, signalStore, withComputed, withHooks, withMethods, withState } from '@ngrx/signals';
 import { User } from '../models/user.model';
 import { Task } from '../models/task.model';
 import { TaskStateEnum } from '../enums/task-state.enum';
-import { computed } from '@angular/core';
+import { computed, effect } from '@angular/core';
+import { isEqual, map } from 'lodash';
+import { loadFromLocalStorage, saveToLocalStorage } from '../../shared/utils/local-storage.utils';
 
-interface StorageState {
+export interface StorageState {
   users: User[];
   tasks: Task[];
 }
-
 
 const initialState: StorageState = {
   users: [
@@ -50,7 +51,29 @@ export const StorageStore = signalStore(
   }),
   withMethods((store) => {
     const syncUsers = (users: User[]) => {
-      patchState(store, { users })
+      const validIds = new Set(map(users, 'id'));
+      const tasks = store.tasks();
+      const now = new Date().toISOString();
+
+      let touched = false;
+      const nextTasks = tasks.map(t => {
+        if (t.userId && !validIds.has(t.userId)) {
+          touched = true;
+          return {
+            ...t,
+            userId: null,
+            state: TaskStateEnum.InQueue,
+            updatedAt: now,
+          };
+        }
+        return t;
+      });
+
+      if (touched) {
+        patchState(store, { users: users, tasks: nextTasks });
+      } else {
+        patchState(store, { users: users });
+      }
     }
 
     const syncTasks = (tasks: Task[]) => {
@@ -60,6 +83,18 @@ export const StorageStore = signalStore(
     return {
       syncUsers,
       syncTasks
+    }
+  }),
+  withHooks({
+    onInit(store) {
+      const restored = loadFromLocalStorage();
+      if (restored && !isEqual(restored, { users: store.users(), tasks: store.tasks() })) {
+        patchState(store, restored);
+      }
+      effect(() => {
+        const state: StorageState = { users: store.users(), tasks: store.tasks() };
+        saveToLocalStorage(state);
+      });
     }
   })
 );
