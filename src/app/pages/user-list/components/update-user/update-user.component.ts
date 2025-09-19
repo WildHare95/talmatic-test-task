@@ -3,6 +3,7 @@ import { User } from '../../../../core/models/user.model';
 import { FormControl, Validators } from '@angular/forms';
 import { NbWindowRef } from '@nebular/theme';
 import { SharedModule } from '../../../../shared/shared.module';
+import { atLeastTwoNonSpace } from '../../../../core/constants/pattern.constants';
 
 @Component({
   selector: 'app-update-user',
@@ -16,7 +17,11 @@ export class UpdateUserComponent implements OnInit {
   protected readonly primaryButtonLabel = signal<null | string>(null)
   protected readonly userControl = new FormControl(
     '',
-    { validators: [Validators.required, Validators.minLength(2)], nonNullable: true }
+    { validators: [
+                Validators.required, 
+                Validators.minLength(2), 
+                Validators.pattern(atLeastTwoNonSpace)
+    ], nonNullable: true }
   )
 
   ngOnInit() {
