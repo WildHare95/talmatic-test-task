@@ -1,5 +1,4 @@
 import { patchState, signalStore, withHooks, withMethods, withState } from '@ngrx/signals';
-import { Task } from '../models/task.model';
 import { StorageStore } from './storage.store';
 import { inject } from '@angular/core';
 import { pipe, tap } from 'rxjs';
